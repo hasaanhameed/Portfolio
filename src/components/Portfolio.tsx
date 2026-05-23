@@ -122,22 +122,6 @@ const PROJECTS = [
 
 export default function Portfolio() {
   const [active, setActive] = useState("about");
-  const [time, setTime] = useState("");
-
-  useEffect(() => {
-    const tick = () =>
-      setTime(
-        new Date().toLocaleTimeString("en-US", {
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false,
-          timeZone: "Asia/Karachi",
-        }),
-      );
-    tick();
-    const id = setInterval(tick, 30_000);
-    return () => clearInterval(id);
-  }, []);
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -163,38 +147,22 @@ export default function Portfolio() {
     <div className="min-h-screen bg-background text-foreground grain">
       {/* NAV */}
       <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b hairline">
-        <div className="mx-auto max-w-6xl px-6 lg:px-10 h-16 flex items-center justify-between">
-          <button
-            onClick={() => scrollTo("about")}
-            className="flex items-center gap-2 font-mono text-xs tracking-tight animate-fade-in"
-          >
-            <span className="h-2 w-2 rounded-full bg-navy animate-pulse" />
-            <span className="text-foreground font-semibold">hasaan.dev</span>
-            <span className="text-muted-foreground hidden sm:inline">/ portfolio</span>
-          </button>
-          <nav className="hidden md:flex items-center gap-1">
-            {NAV.map((n, i) => (
+        <div className="mx-auto max-w-6xl px-6 lg:px-10 h-16 flex items-center justify-center">
+          <nav className="flex items-center gap-1.5 md:gap-3">
+            {NAV.map((n) => (
               <button
                 key={n.id}
                 onClick={() => scrollTo(n.id)}
-                className={`group relative px-3 py-2 font-mono text-xs uppercase tracking-widest transition-colors ${
+                className={`group relative px-3 py-1.5 md:px-4 md:py-2 font-raleway text-xs md:text-sm font-medium tracking-wider cursor-pointer transition-all duration-200 border rounded-sm ${
                   active === n.id
-                    ? "text-navy font-bold"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-navy border-navy bg-cream/40"
+                    : "text-muted-foreground border-transparent hover:text-foreground hover:border-rule hover:bg-cream/15"
                 }`}
               >
-                <span className="text-muted-foreground/60 mr-1">0{i + 1}</span>
                 {n.label}
-                {active === n.id && (
-                  <span className="absolute -bottom-px left-3 right-3 h-px bg-navy" />
-                )}
               </button>
             ))}
           </nav>
-          <div className="hidden sm:flex items-center gap-2 font-mono text-xs text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            PKT {time}
-          </div>
         </div>
       </header>
 

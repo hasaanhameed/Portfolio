@@ -36,6 +36,20 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "Raleway";
+  src: url("./lib/fonts/Raleway-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Raleway";
+  src: url("./lib/fonts/Raleway-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -70,6 +84,7 @@
   --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
   --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-raleway: "Raleway", sans-serif;
 }
 
 :root {
@@ -130,6 +145,9 @@
   }
   .font-mono {
     font-family: var(--font-mono);
+  }
+  .font-raleway {
+    font-family: var(--font-raleway);
   }
   .text-balance {
     text-wrap: balance;
