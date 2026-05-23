@@ -170,6 +170,7 @@ function ContactButton({
   label,
   activePopover,
   setActivePopover,
+  showLabel,
 }: {
   type: "email" | "phone";
   value: string;
@@ -177,6 +178,7 @@ function ContactButton({
   label: string;
   activePopover: "email" | "phone" | null;
   setActivePopover: (type: "email" | "phone" | null) => void;
+  showLabel?: boolean;
 }) {
   const [copied, setCopied] = useState(false);
   const isOpen = activePopover === type;
@@ -205,14 +207,17 @@ function ContactButton({
     <div ref={containerRef} className="relative">
       <button
         onClick={() => setActivePopover(isOpen ? null : type)}
-        className={`inline-flex h-8 w-8 items-center justify-center rounded-full border hairline transition-all duration-200 cursor-pointer ${
+        className={`inline-flex items-center justify-center rounded-full transition-all duration-200 cursor-pointer ${
+          showLabel ? "gap-2" : "h-8 w-8 border hairline"
+        } ${
           isOpen
             ? "bg-navy text-paper border-navy shadow-sm"
-            : "hover:bg-navy hover:text-paper hover:border-navy"
+            : showLabel ? "hover:text-navy" : "hover:bg-navy hover:text-paper hover:border-navy"
         }`}
         aria-label={label}
       >
         <Icon className="h-3.5 w-3.5" />
+        {showLabel && <span className="font-mono text-xs">{label}</span>}
       </button>
       {isOpen && (
         <div className="absolute bottom-11 left-1/2 -translate-x-1/2 z-30 bg-background/95 backdrop-blur-md border border-navy/20 shadow-md rounded-lg px-3 py-1.5 font-mono text-[11px] whitespace-nowrap animate-in fade-in slide-in-from-bottom-2 duration-150">
@@ -524,12 +529,22 @@ export default function Portfolio() {
       <footer className="border-t hairline mt-16">
         <div className="mx-auto max-w-6xl px-6 lg:px-10 py-12">
           <div className="flex flex-col items-center gap-6">
-            <div className="flex items-center gap-3">
-              <IconLink href="https://github.com/hasaanhameed" label="GitHub">
+            <div className="flex items-center gap-4">
+              <IconLink
+                href="https://github.com/hasaanhameed"
+                label="GitHub"
+                className="flex items-center gap-2"
+              >
                 <Github className="h-3.5 w-3.5" />
+                <span className="font-mono text-xs">GitHub</span>
               </IconLink>
-              <IconLink href="https://linkedin.com/in/hasaan-hameed" label="LinkedIn">
+              <IconLink
+                href="https://linkedin.com/in/hasaan-hameed"
+                label="LinkedIn"
+                className="flex items-center gap-2"
+              >
                 <Linkedin className="h-3.5 w-3.5" />
+                <span className="font-mono text-xs">LinkedIn</span>
               </IconLink>
               <ContactButton
                 type="email"
@@ -538,6 +553,7 @@ export default function Portfolio() {
                 label="Email"
                 activePopover={footerPopover}
                 setActivePopover={setFooterPopover}
+                showLabel={true}
               />
               <ContactButton
                 type="phone"
@@ -546,6 +562,7 @@ export default function Portfolio() {
                 label="Phone"
                 activePopover={footerPopover}
                 setActivePopover={setFooterPopover}
+                showLabel={true}
               />
             </div>
             <div className="h-px w-16 bg-rule" />
@@ -601,10 +618,12 @@ function IconLink({
   href,
   label,
   children,
+  className,
 }: {
   href: string;
   label: string;
   children: React.ReactNode;
+  className?: string;
 }) {
   return (
     <a
@@ -612,7 +631,10 @@ function IconLink({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="inline-flex h-8 w-8 items-center justify-center rounded-full border hairline hover:bg-navy hover:text-paper hover:border-navy transition-colors"
+      className={
+        className ||
+        "inline-flex h-8 w-8 items-center justify-center rounded-full border hairline hover:bg-navy hover:text-paper hover:border-navy transition-colors"
+      }
     >
       {children}
     </a>
