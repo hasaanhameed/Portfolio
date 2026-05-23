@@ -50,7 +50,7 @@ const EXPERIENCE = [
 ];
 
 const SKILLS = [
-  { group: "Languages", items: ["Python", "SQL", "JavaScript"] },
+  { group: "Languages", items: ["Python", "SQL"] },
   {
     group: "AI & LLM",
     items: [
@@ -197,11 +197,10 @@ export default function Portfolio() {
               <button
                 key={n.id}
                 onClick={() => scrollTo(n.id)}
-                className={`group relative px-3 py-1.5 md:px-4 md:py-2 font-raleway text-xs md:text-sm font-medium tracking-wider cursor-pointer transition-all duration-200 border rounded-sm ${
-                  active === n.id
+                className={`group relative px-3 py-1.5 md:px-4 md:py-2 font-raleway text-xs md:text-sm font-medium tracking-wider cursor-pointer transition-all duration-200 border rounded-sm ${active === n.id
                     ? "text-navy border-navy bg-cream/40"
                     : "text-muted-foreground border-transparent hover:text-foreground hover:border-rule hover:bg-cream/15"
-                }`}
+                  }`}
               >
                 {n.label}
               </button>
@@ -351,13 +350,16 @@ export default function Portfolio() {
           </>
         }
       >
-        <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 border hairline divide-y divide-x hairline">
+        <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {SKILLS.map((s) => (
-            <div key={s.group} className="bg-background p-8 hover:bg-cream/20 transition-colors">
+            <div
+              key={s.group}
+              className="bg-background/40 backdrop-blur-md border hairline p-8 rounded-xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:bg-cream/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300"
+            >
               <h3 className="font-serif text-2xl mb-6">{s.group}</h3>
               <ul className="space-y-2">
                 {s.items.map((i) => (
-                  <li key={i} className="flex items-center gap-3 font-mono text-sm">
+                  <li key={i} className="flex items-center gap-3 font-mono text-sm text-muted-foreground">
                     <span className="text-navy">›</span>
                     <span>{i}</span>
                   </li>
