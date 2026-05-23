@@ -342,7 +342,7 @@ export default function Portfolio() {
               loop={true}
               renderer={"canvas" as any}
               rendererSettings={{
-                preserveAspectRatio: "xMidYMid slice",
+                preserveAspectRatio: "none",
               }}
               style={{ width: "100%", height: "100%" }}
             />
