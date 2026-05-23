@@ -91,7 +91,13 @@ const PROJECTS = [
     blurb:
       "A web app to let developers instantly understand any GitHub repository by chatting with its codebase using RAG & LLaMA-3.",
     tags: ["FastAPI", "React", "LangChain", "LangGraph", "pgvector", "Redis", "Docker"],
-    links: [{ label: "GitHub", href: "https://github.com/hasaanhameed/RepoMind" }],
+    links: [
+      { label: "GitHub", href: "https://github.com/hasaanhameed/RepoMind" },
+      {
+        label: "Demo",
+        href: "https://drive.google.com/file/d/16VKyrWIHjr3qV9cQWYPNnSRAE0DtdMlb/view?usp=sharing",
+      },
+    ],
   },
   {
     n: "02",
@@ -99,7 +105,13 @@ const PROJECTS = [
     blurb:
       "Healthcare app to detect skin diseases from images using a custom-trained PyTorch CNN, with RAG-powered dermatology chat and PDF report generation.",
     tags: ["Flutter", "FastAPI", "PyTorch", "LangChain", "Groq", "Supabase", "Redis", "Docker"],
-    links: [{ label: "GitHub", href: "https://github.com/hasaanhameed/DermaLens" }],
+    links: [
+      { label: "GitHub", href: "https://github.com/hasaanhameed/DermaLens" },
+      {
+        label: "Demo",
+        href: "https://drive.google.com/file/d/1CjjoZxgikopon-Jj6pUFnZxPU5q6x6N6/view?usp=sharing",
+      },
+    ],
   },
   {
     n: "03",
@@ -107,7 +119,13 @@ const PROJECTS = [
     blurb:
       "Automated academic platform for NUST students to sync deadlines from the university LMS and receive Gmail notifications before due dates.",
     tags: ["React", "FastAPI", "Celery", "PostgreSQL", "Redis", "Docker"],
-    links: [{ label: "GitHub", href: "https://github.com/hasaanhameed/NustPulse" }],
+    links: [
+      { label: "GitHub", href: "https://github.com/hasaanhameed/NustPulse" },
+      {
+        label: "Demo",
+        href: "https://drive.google.com/file/d/1vlcM5c9kL944v4e7f5U9bLk51MGNbOHL/view?usp=sharing",
+      },
+    ],
   },
   {
     n: "04",
@@ -131,7 +149,13 @@ const PROJECTS = [
     blurb:
       "Mobile app that identifies plants via AI image recognition (PlantNet API) and generates care instructions using Groq LLM. Includes JWT auth, history tracking, Redis caching, and per-user rate limiting.",
     tags: ["Flutter", "FastAPI", "Groq", "PlantNet API", "Supabase", "Redis", "Docker"],
-    links: [{ label: "GitHub", href: "https://github.com/hasaanhameed/Botanique" }],
+    links: [
+      { label: "GitHub", href: "https://github.com/hasaanhameed/Botanique" },
+      {
+        label: "Demo",
+        href: "https://drive.google.com/file/d/1qX5248I873iGwC8LMp5otLbfs5e4Q0ze/view?usp=sharing",
+      },
+    ],
   },
 ];
 
@@ -274,10 +298,11 @@ export default function Portfolio() {
               <button
                 key={n.id}
                 onClick={() => scrollTo(n.id)}
-                className={`group relative px-3 py-1.5 md:px-4 md:py-2 font-raleway text-xs md:text-sm font-medium tracking-wider cursor-pointer transition-all duration-200 border rounded-sm ${active === n.id
-                  ? "text-navy border-navy bg-cream/40"
-                  : "text-muted-foreground border-transparent hover:text-foreground hover:border-rule hover:bg-cream/15"
-                  }`}
+                className={`group relative px-3 py-1.5 md:px-4 md:py-2 font-raleway text-xs md:text-sm font-medium tracking-wider cursor-pointer transition-all duration-200 border rounded-sm ${
+                  active === n.id
+                    ? "text-navy border-navy bg-cream/40"
+                    : "text-muted-foreground border-transparent hover:text-foreground hover:border-rule hover:bg-cream/15"
+                }`}
               >
                 {n.label}
               </button>
@@ -424,7 +449,10 @@ export default function Portfolio() {
               <h3 className="font-serif text-2xl mb-6">{s.group}</h3>
               <ul className="space-y-2">
                 {s.items.map((i) => (
-                  <li key={i} className="flex items-center gap-3 font-mono text-sm text-muted-foreground">
+                  <li
+                    key={i}
+                    className="flex items-center gap-3 font-mono text-sm text-muted-foreground"
+                  >
                     <span className="text-navy">›</span>
                     <span>{i}</span>
                   </li>
