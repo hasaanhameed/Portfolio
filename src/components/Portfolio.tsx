@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Github, Linkedin, Mail, Terminal, Phone } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, Phone } from "lucide-react";
 
 const NAV = [
   { id: "about", label: "About" },
@@ -10,23 +10,45 @@ const NAV = [
 
 const EXPERIENCE = [
   {
-    period: "Jan 2026 — Apr 2026",
-    role: "Junior Software Developer",
+    period: "Jan 2026 — May 2026",
+    role: "Part-Time Software Engineer",
     org: "CARE Pvt. Ltd.",
-    desc: "Sole developer of the Norasol Admin Portal – a full-stack internal control panel for managing solar inverters, batteries, customers, and staff. Implemented 9 staff roles enforced via dual-layer RBAC (FastAPI & Supabase Row-Level Security), a real-time MQTT pub/sub notification system, and an automated CI/CD pipeline using GitHub Actions, Docker, and Caddy.",
-    stack: ["React", "FastAPI", "Supabase", "Docker", "MQTT", "Caddy"],
+    bullets: [
+      "Sole developer of the Norasol Admin Portal — an internal web control panel for managing solar inverters, batteries, customers, plants, and staff across the Norasol product line.",
+      "Built full CRUD across all entities (inverters, batteries, customers, plants, staff) with attribute-based sorting, search, and in-depth per-record detail views.",
+      "Implemented 9 distinct staff roles with dual-layer RBAC: FastAPI enforces role-based permission checks on every API endpoint; Supabase Row-Level Security policies enforce access directly at the database layer.",
+      "Designed a customer verification workflow where accounts registered via the Norasol mobile app appear with a pending status in the portal, requiring manual staff activation before access is granted.",
+      "Built a device replacement workflow with a full in-portal flow to swap faulty inverters or batteries and maintain a traceable replacement history per plant.",
+      "Designed and implemented a real-time MQTT pub/sub notification system: a subscriber service listens to device telemetry, applies threshold-based filtering, and delivers breach alerts to subscribed customers via the mobile app.",
+      "Deployed via Docker multi-stage builds, GitHub Actions CI/CD publishing to GHCR, and a Caddy reverse proxy — fully live in production and actively used by the CARE team.",
+    ],
+    stack: [
+      "React",
+      "FastAPI",
+      "Supabase",
+      "PostgreSQL",
+      "Docker",
+      "GitHub Actions",
+      "Caddy",
+      "MQTT",
+    ],
   },
   {
     period: "Jul 2025 — Aug 2025",
     role: "Full Stack Development Intern",
     org: "CARE Pvt. Ltd.",
-    desc: "Built a digital shooting range automation system using the Reflex framework to replace manual paper-based workflows. Implemented bullseye shot plotting, per-session marksmanship analytics (centroid, group size, performance trends), and secure QR code-based session login.",
+    bullets: [
+      "Built a digital shooting range automation system using the Reflex framework (Python full-stack), replacing manual paper-based session logging with a data-driven workflow.",
+      "Implemented shot plotting on a bullseye diagram, giving shooters accurate spatial representations of their per-session shot groupings.",
+      "Calculated per-session marksmanship metrics including centroid (average point of impact), group size (shot spread), and performance trend graphs visualised across sessions.",
+      "Implemented QR code-based session login: scanning a QR code at the range automatically authenticated the user and pre-loaded their full profile and session history, eliminating manual data entry.",
+    ],
     stack: ["Reflex", "Python", "TailwindCSS"],
   },
 ];
 
 const SKILLS = [
-  { group: "Languages", items: ["Python", "SQL", "TypeScript", "Dart"] },
+  { group: "Languages", items: ["Python", "SQL", "JavaScript"] },
   {
     group: "AI & LLM",
     items: [
@@ -118,6 +140,14 @@ const PROJECTS = [
       { label: "Demo", href: "https://github.com/hasaanhameed" },
     ],
   },
+  {
+    n: "06",
+    title: "Botanique",
+    blurb:
+      "Full-stack mobile app that uses AI-powered image recognition (PlantNet API) to identify plants and generate detailed care instructions via Groq LLM. Features JWT auth, identification history, Redis caching with 7-day TTL, and per-user rate limiting.",
+    tags: ["Flutter", "FastAPI", "Groq", "PlantNet API", "Supabase", "Redis", "Docker"],
+    links: [{ label: "GitHub", href: "https://github.com/hasaanhameed" }],
+  },
 ];
 
 export default function Portfolio() {
@@ -140,7 +170,35 @@ export default function Portfolio() {
   }, []);
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const element = document.getElementById(id);
+    if (!element) return;
+
+    // Header offset (h-16 = 64px)
+    const offset = 64;
+    const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = elementPosition - offset;
+
+    const startPosition = window.scrollY;
+    const distance = offsetPosition - startPosition;
+    const duration = 800; // duration in ms
+    let start: number | null = null;
+
+    const step = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const progress = timestamp - start;
+      const time = Math.min(progress / duration, 1);
+
+      // Easing function: easeInOutQuad
+      const ease = time < 0.5 ? 2 * time * time : -1 + (4 - 2 * time) * time;
+
+      window.scrollTo(0, startPosition + distance * ease);
+
+      if (progress < duration) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
   };
 
   return (
@@ -189,13 +247,6 @@ export default function Portfolio() {
             <div className="md:col-span-5 md:pl-8 md:border-l hairline space-y-4 font-mono text-xs">
               <Row k="Located" v="Rawalpindi, Pakistan" />
               <Row k="Education" v="B.S. Computer Science, NUST '27" />
-              <Row k="Focus" v="AI Agents · LLMs · Full Stack" />
-              <Row
-                k="Status"
-                v={
-                  <span className="text-navy font-semibold">Open to SWE & AI roles, 2026/2027</span>
-                }
-              />
               <div className="flex gap-2 pt-2">
                 <IconLink href="https://github.com/hasaanhameed" label="GitHub">
                   <Github className="h-3.5 w-3.5" />
@@ -240,7 +291,17 @@ export default function Portfolio() {
                   {e.role}
                   <span className="text-muted-foreground"> — {e.org}</span>
                 </h3>
-                <p className="mt-3 text-muted-foreground leading-relaxed max-w-xl">{e.desc}</p>
+                <ul className="mt-3 space-y-2.5">
+                  {e.bullets.map((b, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-2.5 text-muted-foreground leading-relaxed"
+                    >
+                      <span className="text-navy mt-1 shrink-0 text-base leading-none">›</span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
               <div className="md:col-span-3 flex flex-wrap gap-1.5 items-start pt-2">
                 {e.stack.map((s) => (
@@ -287,17 +348,6 @@ export default function Portfolio() {
               </ul>
             </div>
           ))}
-          <div className="bg-navy text-paper p-8 flex flex-col justify-between hover:bg-navy-deep transition-colors duration-300">
-            <Terminal className="h-5 w-5" />
-            <div>
-              <div className="font-mono text-[10px] uppercase tracking-widest opacity-60 mb-2">
-                Currently learning
-              </div>
-              <p className="font-serif text-2xl leading-tight text-paper">
-                AI Agents, Multi-agent workflows (LangGraph), and LLM observability platforms.
-              </p>
-            </div>
-          </div>
         </div>
       </Section>
 
@@ -356,49 +406,26 @@ export default function Portfolio() {
 
       {/* FOOTER */}
       <footer className="border-t hairline mt-16">
-        <div className="mx-auto max-w-6xl px-6 lg:px-10 py-16">
-          <div className="font-mono text-xs uppercase tracking-[0.3em] text-navy mb-6">
-            — Reach out
-          </div>
-          <h2 className="font-serif text-4xl md:text-6xl leading-tight max-w-3xl text-balance">
-            If you're hiring for software engineering, full-stack, or AI/LLM integration roles —{" "}
-            <a
-              href="mailto:hasaanhameed52@gmail.com"
-              className="text-navy underline decoration-1 underline-offset-8 hover:decoration-2 transition-all"
-            >
-              let's talk
-            </a>
-            .
-          </h2>
-          <div className="mt-16 flex flex-col md:flex-row justify-between gap-4 font-mono text-xs text-muted-foreground">
-            <div>© 2026 Hasaan Hameed. Built with care.</div>
-            <div className="flex gap-6">
-              <a
-                href="https://github.com/hasaanhameed"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-foreground transition-colors"
-              >
-                github
-              </a>
-              <a
-                href="https://linkedin.com/in/hasaan-hameed"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-foreground transition-colors"
-              >
-                linkedin
-              </a>
-              <a
-                href="mailto:hasaanhameed52@gmail.com"
-                className="hover:text-foreground transition-colors"
-              >
-                email
-              </a>
-              <a href="tel:+923275886850" className="hover:text-foreground transition-colors">
-                phone
-              </a>
+        <div className="mx-auto max-w-6xl px-6 lg:px-10 py-12">
+          <div className="flex flex-col items-center gap-6">
+            <div className="flex items-center gap-3">
+              <IconLink href="https://github.com/hasaanhameed" label="GitHub">
+                <Github className="h-3.5 w-3.5" />
+              </IconLink>
+              <IconLink href="https://linkedin.com/in/hasaan-hameed" label="LinkedIn">
+                <Linkedin className="h-3.5 w-3.5" />
+              </IconLink>
+              <IconLink href="mailto:hasaanhameed52@gmail.com" label="Email">
+                <Mail className="h-3.5 w-3.5" />
+              </IconLink>
+              <IconLink href="tel:+923275886850" label="Phone">
+                <Phone className="h-3.5 w-3.5" />
+              </IconLink>
             </div>
+            <div className="h-px w-16 bg-rule" />
+            <p className="font-mono text-xs text-muted-foreground tracking-widest uppercase">
+              © 2026 Hasaan Hameed
+            </p>
           </div>
         </div>
       </footer>
