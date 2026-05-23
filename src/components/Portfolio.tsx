@@ -337,7 +337,8 @@ export default function Portfolio() {
             01 — About
           </div>
           <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight text-balance">
-            Hasaan Hameed — a final year CS student at NUST building{" "}
+            Hasaan Hameed
+            <br />A final year CS student at NUST building{" "}
             <em className="text-navy">AI-powered applications</em> that are intelligent, fast, and
             production-ready.
           </h1>
@@ -346,8 +347,7 @@ export default function Portfolio() {
               Currently a final year Computer Science student at NUST (National University of
               Sciences and Technology). I am passionate about building AI-powered web and mobile
               applications, with hands-on experience integrating LLMs, RAG pipelines, and
-              intelligent automation into production-ready products. Previously a software developer
-              and intern at CARE Pvt. Ltd.
+              intelligent automation into production-ready products.
             </p>
             <div className="md:col-span-5 md:pl-8 md:border-l hairline space-y-4 font-mono text-xs">
               <Row k="Located" v="Rawalpindi, Pakistan" />
@@ -369,7 +369,7 @@ export default function Portfolio() {
                 />
                 <ContactButton
                   type="phone"
-                  value="+92 3275886850"
+                  value="+923275886850"
                   icon={Phone}
                   label="Phone"
                   activePopover={contactPopover}
@@ -474,7 +474,7 @@ export default function Portfolio() {
         label="Projects"
         title={
           <>
-            Selected work, <em className="text-navy">not exhaustive</em>.
+            Recent projects, <em className="text-navy">practical value</em>.
           </>
         }
       >
@@ -541,7 +541,7 @@ export default function Portfolio() {
               />
               <ContactButton
                 type="phone"
-                value="+92 327 588 6850"
+                value="+923275886850"
                 icon={Phone}
                 label="Phone"
                 activePopover={footerPopover}
@@ -550,7 +550,7 @@ export default function Portfolio() {
             </div>
             <div className="h-px w-16 bg-rule" />
             <p className="font-mono text-xs text-muted-foreground tracking-widest uppercase">
-              © 2026 Hasaan Hameed
+              ©2026 Hasaan Hameed
             </p>
           </div>
         </div>
