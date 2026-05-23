@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Github, Linkedin, Mail, Terminal } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, Terminal, Phone } from "lucide-react";
 
 const NAV = [
   { id: "about", label: "About" },
@@ -10,64 +10,113 @@ const NAV = [
 
 const EXPERIENCE = [
   {
-    period: "2024 — Present",
-    role: "Software Engineer Intern",
-    org: "Nimbus Labs",
-    desc: "Shipped a distributed task scheduler in Go handling 12k jobs/min. Cut p99 latency 38% via batched writes and a custom backpressure layer.",
-    stack: ["Go", "Postgres", "Redis", "gRPC"],
+    period: "Jan 2026 — Apr 2026",
+    role: "Junior Software Developer",
+    org: "CARE Pvt. Ltd.",
+    desc: "Sole developer of the Norasol Admin Portal – a full-stack internal control panel for managing solar inverters, batteries, customers, and staff. Implemented 9 staff roles enforced via dual-layer RBAC (FastAPI & Supabase Row-Level Security), a real-time MQTT pub/sub notification system, and an automated CI/CD pipeline using GitHub Actions, Docker, and Caddy.",
+    stack: ["React", "FastAPI", "Supabase", "Docker", "MQTT", "Caddy"],
   },
   {
-    period: "2023 — 2024",
-    role: "Undergraduate Research Assistant",
-    org: "Systems & Networking Lab",
-    desc: "Co-authored a paper on adaptive congestion control for edge networks. Built a simulation harness in Rust used by three downstream projects.",
-    stack: ["Rust", "Python", "LaTeX"],
-  },
-  {
-    period: "2023",
-    role: "Open Source Contributor",
-    org: "Apache Arrow",
-    desc: "Patched the C++ Parquet reader; landed perf fixes for nested list decoding that improved scan throughput on wide schemas.",
-    stack: ["C++", "CMake", "Parquet"],
+    period: "Jul 2025 — Aug 2025",
+    role: "Full Stack Development Intern",
+    org: "CARE Pvt. Ltd.",
+    desc: "Built a digital shooting range automation system using the Reflex framework to replace manual paper-based workflows. Implemented bullseye shot plotting, per-session marksmanship analytics (centroid, group size, performance trends), and secure QR code-based session login.",
+    stack: ["Reflex", "Python", "TailwindCSS"],
   },
 ];
 
 const SKILLS = [
-  { group: "Languages", items: ["TypeScript", "Python", "Go", "Rust", "C++", "SQL"] },
-  { group: "Systems", items: ["Linux", "Docker", "Kubernetes", "gRPC", "Kafka", "Postgres"] },
-  { group: "Frontend", items: ["React", "TanStack", "Tailwind", "WebGL", "Vite"] },
-  { group: "ML / Data", items: ["PyTorch", "NumPy", "DuckDB", "Polars", "Ray"] },
-  { group: "Practice", items: ["Distributed Systems", "Compilers", "Perf Eng.", "DX"] },
+  { group: "Languages", items: ["Python", "SQL", "TypeScript", "Dart"] },
+  {
+    group: "AI & LLM",
+    items: [
+      "LangChain",
+      "LangGraph",
+      "Groq",
+      "RAG Pipelines",
+      "Sentence Transformers",
+      "Vector Databases",
+    ],
+  },
+  { group: "ML & Data", items: ["PyTorch", "Pandas", "NumPy"] },
+  {
+    group: "Backend",
+    items: ["FastAPI", "SQLAlchemy", "Alembic", "REST APIs", "MQTT", "JWT & RBAC"],
+  },
+  { group: "Frontend & Mobile", items: ["React", "TypeScript", "Flutter", "TailwindCSS"] },
+  {
+    group: "DevOps & Tools",
+    items: [
+      "Docker",
+      "GitHub Actions",
+      "CI/CD",
+      "PostgreSQL",
+      "Supabase",
+      "Redis",
+      "Nginx",
+      "n8n",
+      "Git",
+    ],
+  },
 ];
 
 const PROJECTS = [
   {
     n: "01",
-    title: "Lattice",
-    blurb: "A query planner for time-series joins that beats DuckDB on skewed windows.",
-    tags: ["Rust", "Arrow", "SIMD"],
-    href: "#",
+    title: "RepoMind",
+    blurb:
+      "A web app to let developers instantly understand any GitHub repository by chatting with its codebase using RAG & LLaMA-3.",
+    tags: ["FastAPI", "React", "LangChain", "LangGraph", "pgvector", "Redis", "Docker"],
+    links: [
+      { label: "GitHub", href: "https://github.com/hasaanhameed" },
+      { label: "Demo", href: "https://github.com/hasaanhameed" },
+    ],
   },
   {
     n: "02",
-    title: "Halfwave",
-    blurb: "Browser-based DAW with sub-10ms scheduling using AudioWorklets and WASM DSP.",
-    tags: ["WASM", "Rust", "Web Audio"],
-    href: "#",
+    title: "DermaLens",
+    blurb:
+      "Healthcare app to detect skin diseases from images using a custom-trained PyTorch CNN, with RAG-powered dermatology chat and PDF report generation.",
+    tags: ["Flutter", "FastAPI", "PyTorch", "LangChain", "Groq", "Supabase", "Redis", "Docker"],
+    links: [
+      { label: "GitHub", href: "https://github.com/hasaanhameed" },
+      { label: "Demo", href: "https://github.com/hasaanhameed" },
+    ],
   },
   {
     n: "03",
-    title: "paper.fyi",
-    blurb: "An arXiv reader that re-renders math as accessible HTML and indexes proofs.",
-    tags: ["TypeScript", "MathML", "Postgres"],
-    href: "#",
+    title: "NustPulse",
+    blurb:
+      "Automated academic platform for NUST students to sync deadlines from the university LMS and receive Gmail notifications before due dates.",
+    tags: ["React", "FastAPI", "Celery", "PostgreSQL", "Redis", "Docker"],
+    links: [
+      { label: "GitHub", href: "https://github.com/hasaanhameed" },
+      { label: "Demo", href: "https://github.com/hasaanhameed" },
+      { label: "Live", href: "https://github.com/hasaanhameed" },
+    ],
   },
   {
     n: "04",
-    title: "kvlite",
-    blurb: "Educational LSM-tree key-value store with a teaching-grade visual debugger.",
-    tags: ["Go", "BadgerDB", "TUI"],
-    href: "#",
+    title: "NustMarkaz",
+    blurb:
+      "All-in-one campus platform for NUST students covering marketplace, carpooling, lost & found, events, societies, cafes, trips and donations.",
+    tags: ["React", "TypeScript", "FastAPI", "PostgreSQL", "TailwindCSS", "Docker"],
+    links: [
+      { label: "GitHub", href: "https://github.com/hasaanhameed" },
+      { label: "Demo", href: "https://github.com/hasaanhameed" },
+      { label: "Live", href: "https://github.com/hasaanhameed" },
+    ],
+  },
+  {
+    n: "05",
+    title: "HireReady",
+    blurb:
+      "AI-powered recruitment platform offering job seekers resume analysis & roadmaps, and recruiters automated applicant screening.",
+    tags: ["React", "FastAPI", "Groq", "LangChain", "Supabase", "Docker"],
+    links: [
+      { label: "GitHub", href: "https://github.com/hasaanhameed" },
+      { label: "Demo", href: "https://github.com/hasaanhameed" },
+    ],
   },
 ];
 
@@ -82,8 +131,8 @@ export default function Portfolio() {
           hour: "2-digit",
           minute: "2-digit",
           hour12: false,
-          timeZone: "America/New_York",
-        })
+          timeZone: "Asia/Karachi",
+        }),
       );
     tick();
     const id = setInterval(tick, 30_000);
@@ -97,7 +146,7 @@ export default function Portfolio() {
           if (e.isIntersecting) setActive(e.target.id);
         });
       },
-      { rootMargin: "-45% 0px -50% 0px" }
+      { rootMargin: "-45% 0px -50% 0px" },
     );
     NAV.forEach((n) => {
       const el = document.getElementById(n.id);
@@ -117,10 +166,10 @@ export default function Portfolio() {
         <div className="mx-auto max-w-6xl px-6 lg:px-10 h-16 flex items-center justify-between">
           <button
             onClick={() => scrollTo("about")}
-            className="flex items-center gap-2 font-mono text-xs tracking-tight"
+            className="flex items-center gap-2 font-mono text-xs tracking-tight animate-fade-in"
           >
-            <span className="h-2 w-2 rounded-full bg-navy" />
-            <span className="text-foreground">arjun.dev</span>
+            <span className="h-2 w-2 rounded-full bg-navy animate-pulse" />
+            <span className="text-foreground font-semibold">hasaan.dev</span>
             <span className="text-muted-foreground hidden sm:inline">/ portfolio</span>
           </button>
           <nav className="hidden md:flex items-center gap-1">
@@ -129,7 +178,9 @@ export default function Portfolio() {
                 key={n.id}
                 onClick={() => scrollTo(n.id)}
                 className={`group relative px-3 py-2 font-mono text-xs uppercase tracking-widest transition-colors ${
-                  active === n.id ? "text-navy" : "text-muted-foreground hover:text-foreground"
+                  active === n.id
+                    ? "text-navy font-bold"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 <span className="text-muted-foreground/60 mr-1">0{i + 1}</span>
@@ -142,7 +193,7 @@ export default function Portfolio() {
           </nav>
           <div className="hidden sm:flex items-center gap-2 font-mono text-xs text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            NYC {time}
+            PKT {time}
           </div>
         </div>
       </header>
@@ -155,26 +206,41 @@ export default function Portfolio() {
             01 — About
           </div>
           <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight text-balance">
-            Arjun Mehta — a computer science student building{" "}
-            <em className="text-navy">systems that feel</em> honest, fast, and a little bit
-            opinionated.
+            Hasaan Hameed — a final year CS student at NUST building{" "}
+            <em className="text-navy">AI-powered applications</em> that are intelligent, fast, and
+            production-ready.
           </h1>
           <div className="mt-12 grid md:grid-cols-12 gap-8 items-start">
             <p className="md:col-span-7 text-lg md:text-xl leading-relaxed text-muted-foreground max-w-2xl">
-              Currently a senior at Columbia studying distributed systems and programming
-              languages. I like writing compilers in the morning, query planners in the afternoon,
-              and indulging in pixel-perfect frontends on the weekend. Previously at Nimbus Labs
-              and a systems research group.
+              Currently a final year Computer Science student at NUST (National University of
+              Sciences and Technology). I am passionate about building AI-powered web and mobile
+              applications, with hands-on experience integrating LLMs, RAG pipelines, and
+              intelligent automation into production-ready products. Previously a software developer
+              and intern at CARE Pvt. Ltd.
             </p>
             <div className="md:col-span-5 md:pl-8 md:border-l hairline space-y-4 font-mono text-xs">
-              <Row k="Located" v="Brooklyn, NY" />
-              <Row k="Education" v="B.S. Computer Science, '26" />
-              <Row k="Focus" v="Distributed Systems · PLs" />
-              <Row k="Status" v={<span className="text-navy">Open to SWE roles, 2026</span>} />
+              <Row k="Located" v="Rawalpindi, Pakistan" />
+              <Row k="Education" v="B.S. Computer Science, NUST '27" />
+              <Row k="Focus" v="AI Agents · LLMs · Full Stack" />
+              <Row
+                k="Status"
+                v={
+                  <span className="text-navy font-semibold">Open to SWE & AI roles, 2026/2027</span>
+                }
+              />
               <div className="flex gap-2 pt-2">
-                <IconLink href="#" label="GitHub"><Github className="h-3.5 w-3.5" /></IconLink>
-                <IconLink href="#" label="LinkedIn"><Linkedin className="h-3.5 w-3.5" /></IconLink>
-                <IconLink href="mailto:hi@arjun.dev" label="Email"><Mail className="h-3.5 w-3.5" /></IconLink>
+                <IconLink href="https://github.com/hasaanhameed" label="GitHub">
+                  <Github className="h-3.5 w-3.5" />
+                </IconLink>
+                <IconLink href="https://linkedin.com/in/hasaan-hameed" label="LinkedIn">
+                  <Linkedin className="h-3.5 w-3.5" />
+                </IconLink>
+                <IconLink href="mailto:hasaanhameed52@gmail.com" label="Email">
+                  <Mail className="h-3.5 w-3.5" />
+                </IconLink>
+                <IconLink href="tel:+923275886850" label="Phone">
+                  <Phone className="h-3.5 w-3.5" />
+                </IconLink>
               </div>
             </div>
           </div>
@@ -182,10 +248,22 @@ export default function Portfolio() {
       </section>
 
       {/* EXPERIENCE */}
-      <Section id="experience" num="02" label="Experience" title={<>Places I've shipped <em className="text-navy">real things</em>.</>}>
+      <Section
+        id="experience"
+        num="02"
+        label="Experience"
+        title={
+          <>
+            Places I've shipped <em className="text-navy">real things</em>.
+          </>
+        }
+      >
         <ol className="mt-16 divide-y hairline border-t border-b hairline">
           {EXPERIENCE.map((e) => (
-            <li key={e.role} className="grid md:grid-cols-12 gap-6 py-8 group hover:bg-cream/60 transition-colors px-2 -mx-2 rounded">
+            <li
+              key={e.role}
+              className="grid md:grid-cols-12 gap-6 py-8 group hover:bg-cream/60 transition-colors px-2 -mx-2 rounded"
+            >
               <div className="md:col-span-3 font-mono text-xs uppercase tracking-widest text-muted-foreground pt-2">
                 {e.period}
               </div>
@@ -198,7 +276,10 @@ export default function Portfolio() {
               </div>
               <div className="md:col-span-3 flex flex-wrap gap-1.5 items-start pt-2">
                 {e.stack.map((s) => (
-                  <span key={s} className="font-mono text-[10px] uppercase tracking-wider px-2 py-1 border hairline rounded-sm">
+                  <span
+                    key={s}
+                    className="font-mono text-[10px] uppercase tracking-wider px-2 py-1 border hairline rounded-sm bg-background/50"
+                  >
                     {s}
                   </span>
                 ))}
@@ -209,10 +290,19 @@ export default function Portfolio() {
       </Section>
 
       {/* SKILLS */}
-      <Section id="skills" num="03" label="Skills" title={<>The toolkit, <em className="text-navy">grouped honestly</em>.</>}>
+      <Section
+        id="skills"
+        num="03"
+        label="Skills"
+        title={
+          <>
+            The toolkit, <em className="text-navy">grouped honestly</em>.
+          </>
+        }
+      >
         <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-rule border hairline">
           {SKILLS.map((s) => (
-            <div key={s.group} className="bg-background p-8">
+            <div key={s.group} className="bg-background p-8 hover:bg-cream/20 transition-colors">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="font-serif text-2xl">{s.group}</h3>
                 <span className="font-mono text-[10px] text-muted-foreground">
@@ -229,14 +319,14 @@ export default function Portfolio() {
               </ul>
             </div>
           ))}
-          <div className="bg-navy text-paper p-8 flex flex-col justify-between">
+          <div className="bg-navy text-paper p-8 flex flex-col justify-between hover:bg-navy-deep transition-colors duration-300">
             <Terminal className="h-5 w-5" />
             <div>
               <div className="font-mono text-[10px] uppercase tracking-widest opacity-60 mb-2">
                 Currently learning
               </div>
-              <p className="font-serif text-2xl leading-tight">
-                Formal verification, MLIR, and the new TC39 Records & Tuples proposal.
+              <p className="font-serif text-2xl leading-tight text-paper">
+                AI Agents, Multi-agent workflows (LangGraph), and LLM observability platforms.
               </p>
             </div>
           </div>
@@ -244,34 +334,54 @@ export default function Portfolio() {
       </Section>
 
       {/* PROJECTS */}
-      <Section id="projects" num="04" label="Projects" title={<>Selected work, <em className="text-navy">not exhaustive</em>.</>}>
+      <Section
+        id="projects"
+        num="04"
+        label="Projects"
+        title={
+          <>
+            Selected work, <em className="text-navy">not exhaustive</em>.
+          </>
+        }
+      >
         <div className="mt-16 border-t hairline">
           {PROJECTS.map((p) => (
-            <a
+            <div
               key={p.n}
-              href={p.href}
               className="group grid md:grid-cols-12 gap-6 items-baseline py-10 border-b hairline hover:bg-cream/60 transition-colors px-2 -mx-2"
             >
-              <div className="md:col-span-1 font-mono text-xs text-muted-foreground pt-3">{p.n}</div>
+              <div className="md:col-span-1 font-mono text-xs text-muted-foreground pt-3">
+                {p.n}
+              </div>
               <div className="md:col-span-4">
-                <h3 className="font-serif text-3xl md:text-4xl leading-none">
-                  {p.title}
-                </h3>
+                <h3 className="font-serif text-3xl md:text-4xl leading-none">{p.title}</h3>
               </div>
               <p className="md:col-span-4 text-muted-foreground leading-relaxed">{p.blurb}</p>
               <div className="md:col-span-2 flex flex-wrap gap-1.5">
                 {p.tags.map((t) => (
-                  <span key={t} className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                  <span
+                    key={t}
+                    className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground"
+                  >
                     {t}
                   </span>
                 ))}
               </div>
-              <div className="md:col-span-1 flex justify-end pt-2">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border hairline group-hover:bg-navy group-hover:text-paper group-hover:border-navy transition-all group-hover:rotate-45">
-                  <ArrowUpRight className="h-4 w-4" />
-                </span>
+              <div className="md:col-span-1 flex flex-col items-end gap-2 pt-2">
+                {p.links.map((l) => (
+                  <a
+                    key={l.label}
+                    href={l.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-xs text-muted-foreground hover:text-navy flex items-center gap-0.5 group/link transition-colors"
+                  >
+                    {l.label}{" "}
+                    <ArrowUpRight className="h-3 w-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                  </a>
+                ))}
               </div>
-            </a>
+            </div>
           ))}
         </div>
       </Section>
@@ -283,19 +393,43 @@ export default function Portfolio() {
             — Reach out
           </div>
           <h2 className="font-serif text-4xl md:text-6xl leading-tight max-w-3xl text-balance">
-            If you're hiring for systems, infra, or DX-heavy roles —{" "}
-            <a href="mailto:hi@arjun.dev" className="text-navy underline decoration-1 underline-offset-8 hover:decoration-2">
+            If you're hiring for software engineering, full-stack, or AI/LLM integration roles —{" "}
+            <a
+              href="mailto:hasaanhameed52@gmail.com"
+              className="text-navy underline decoration-1 underline-offset-8 hover:decoration-2 transition-all"
+            >
               let's talk
             </a>
             .
           </h2>
           <div className="mt-16 flex flex-col md:flex-row justify-between gap-4 font-mono text-xs text-muted-foreground">
-            <div>© 2026 Arjun Mehta. Built with care.</div>
+            <div>© 2026 Hasaan Hameed. Built with care.</div>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-foreground">github</a>
-              <a href="#" className="hover:text-foreground">linkedin</a>
-              <a href="#" className="hover:text-foreground">read.cv</a>
-              <a href="mailto:hi@arjun.dev" className="hover:text-foreground">email</a>
+              <a
+                href="https://github.com/hasaanhameed"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-foreground transition-colors"
+              >
+                github
+              </a>
+              <a
+                href="https://linkedin.com/in/hasaan-hameed"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-foreground transition-colors"
+              >
+                linkedin
+              </a>
+              <a
+                href="mailto:hasaanhameed52@gmail.com"
+                className="hover:text-foreground transition-colors"
+              >
+                email
+              </a>
+              <a href="tel:+923275886850" className="hover:text-foreground transition-colors">
+                phone
+              </a>
             </div>
           </div>
         </div>
@@ -342,10 +476,20 @@ function Row({ k, v }: { k: string; v: React.ReactNode }) {
   );
 }
 
-function IconLink({ href, label, children }: { href: string; label: string; children: React.ReactNode }) {
+function IconLink({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
     <a
       href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       aria-label={label}
       className="inline-flex h-8 w-8 items-center justify-center rounded-full border hairline hover:bg-navy hover:text-paper hover:border-navy transition-colors"
     >

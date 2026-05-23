@@ -6,28 +6,32 @@
 
 @font-face {
   font-family: "Instrument Serif";
-  src: url("https://fonts.gstatic.com/s/instrumentserif/v4/jizDREVItHgc8qDIbSTKq4XKVi2ucggi.woff2") format("woff2");
+  src: url("https://fonts.gstatic.com/s/instrumentserif/v4/jizDREVItHgc8qDIbSTKq4XKVi2ucggi.woff2")
+    format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Instrument Serif";
-  src: url("https://fonts.gstatic.com/s/instrumentserif/v4/jizGREVItHgc8qDIbSTKq4XLgi3hZkqlrcwQ.woff2") format("woff2");
+  src: url("https://fonts.gstatic.com/s/instrumentserif/v4/jizGREVItHgc8qDIbSTKq4XLgi3hZkqlrcwQ.woff2")
+    format("woff2");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Inter Tight";
-  src: url("https://fonts.gstatic.com/s/intertight/v11/NGSnv5HMAFg6IuGlBNMjxJEL2VmU3NS7Z2JCqQ.woff2") format("woff2");
+  src: url("https://fonts.gstatic.com/s/intertight/v11/NGSnv5HMAFg6IuGlBNMjxJEL2VmU3NS7Z2JCqQ.woff2")
+    format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "JetBrains Mono";
-  src: url("https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2") format("woff2");
+  src: url("https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2")
+    format("woff2");
   font-weight: 100 800;
   font-style: normal;
   font-display: swap;
@@ -72,12 +76,12 @@
   --radius: 0.5rem;
 
   /* Whites & navy palette */
-  --paper: oklch(0.985 0.003 90);          /* warm off-white */
-  --cream: oklch(0.965 0.012 85);          /* warmer cream */
-  --ink: oklch(0.18 0.02 250);             /* near-black with navy hint */
-  --navy: oklch(0.32 0.09 258);            /* primary navy */
-  --navy-deep: oklch(0.22 0.08 258);       /* deep navy */
-  --rule: oklch(0.86 0.01 250);            /* hairline rule */
+  --paper: oklch(0.985 0.003 90); /* warm off-white */
+  --cream: oklch(0.965 0.012 85); /* warmer cream */
+  --ink: oklch(0.18 0.02 250); /* near-black with navy hint */
+  --navy: oklch(0.32 0.09 258); /* primary navy */
+  --navy-deep: oklch(0.22 0.08 258); /* deep navy */
+  --rule: oklch(0.86 0.01 250); /* hairline rule */
 
   --background: var(--paper);
   --foreground: var(--ink);
@@ -101,8 +105,12 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -110,16 +118,27 @@
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
   }
-  ::selection { background: var(--navy); color: var(--paper); }
+  ::selection {
+    background: var(--navy);
+    color: var(--paper);
+  }
 }
 
 @layer utilities {
-  .font-serif { font-family: var(--font-serif); }
-  .font-mono { font-family: var(--font-mono); }
-  .text-balance { text-wrap: balance; }
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
   .grain {
     background-image: radial-gradient(oklch(0.18 0.02 250 / 0.04) 1px, transparent 1px);
     background-size: 3px 3px;
   }
-  .hairline { border-color: var(--rule); }
+  .hairline {
+    border-color: var(--rule);
+  }
 }
