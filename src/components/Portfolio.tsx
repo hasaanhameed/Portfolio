@@ -137,6 +137,10 @@ const PROJECTS = [
     links: [
       { label: "GitHub", href: "https://github.com/hasaanhameed/NustMarkaz" },
       { label: "Live", href: "https://nustmarkaz.com" },
+      {
+        label: "Demo",
+        href: "https://drive.google.com/file/d/1pDj8Z56lhYQMfWrYHFIIg4AwnCeGaVr2/view?usp=sharing",
+      },
     ],
   },
   {
@@ -145,7 +149,13 @@ const PROJECTS = [
     blurb:
       "AI-powered recruitment platform offering job seekers resume analysis & roadmaps, and recruiters automated applicant screening.",
     tags: ["React", "FastAPI", "Groq", "LangChain", "Supabase", "Docker"],
-    links: [{ label: "GitHub", href: "https://github.com/hasaanhameed/HireReady" }],
+    links: [
+      { label: "GitHub", href: "https://github.com/hasaanhameed/HireReady" },
+      {
+        label: "Demo",
+        href: "https://drive.google.com/file/d/1hVRI5reZjGORLWSdN-LGNnr-OuiVdL1c/view?usp=sharing",
+      },
+    ],
   },
   {
     n: "06",
@@ -212,7 +222,9 @@ function ContactButton({
         } ${
           isOpen
             ? "bg-navy text-paper border-navy shadow-sm"
-            : showLabel ? "hover:text-navy" : "hover:bg-navy hover:text-paper hover:border-navy"
+            : showLabel
+              ? "hover:text-navy"
+              : "hover:bg-navy hover:text-paper hover:border-navy"
         }`}
         aria-label={label}
       >
