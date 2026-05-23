@@ -296,7 +296,7 @@ export default function Portfolio() {
               <div className="md:col-span-3 font-mono text-xs uppercase tracking-widest text-muted-foreground pt-2">
                 {e.period}
               </div>
-              <div className="md:col-span-6">
+              <div className="md:col-span-9">
                 <h3 className="font-serif text-2xl md:text-3xl leading-tight">
                   {e.role}
                   <span className="text-muted-foreground"> — {e.org}</span>
@@ -312,16 +312,16 @@ export default function Portfolio() {
                     </li>
                   ))}
                 </ul>
-              </div>
-              <div className="md:col-span-3 flex flex-wrap gap-1.5 items-start pt-2">
-                {e.stack.map((s) => (
-                  <span
-                    key={s}
-                    className="font-mono text-[10px] uppercase tracking-wider px-2 py-1 border hairline rounded-sm bg-background/50"
-                  >
-                    {s}
-                  </span>
-                ))}
+                <div className="mt-5 flex flex-wrap gap-1.5">
+                  {e.stack.map((s) => (
+                    <span
+                      key={s}
+                      className="font-mono text-[10px] uppercase tracking-wider px-2 py-1 border hairline rounded-sm bg-background/50"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
               </div>
             </li>
           ))}
