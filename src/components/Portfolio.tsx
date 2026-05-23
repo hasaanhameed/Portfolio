@@ -125,6 +125,7 @@ const PROJECTS = [
         label: "Demo",
         href: "https://drive.google.com/file/d/1vlcM5c9kL944v4e7f5U9bLk51MGNbOHL/view?usp=sharing",
       },
+      { label: "Live", href: "https://nustpulse.com" },
     ],
   },
   {
@@ -133,7 +134,10 @@ const PROJECTS = [
     blurb:
       "All-in-one campus platform for NUST students covering marketplace, carpooling, lost & found, events, societies, cafes, trips and donations.",
     tags: ["React", "TypeScript", "FastAPI", "PostgreSQL", "TailwindCSS", "Docker"],
-    links: [{ label: "GitHub", href: "https://github.com/hasaanhameed/NustMarkaz" }],
+    links: [
+      { label: "GitHub", href: "https://github.com/hasaanhameed/NustMarkaz" },
+      { label: "Live", href: "https://nustmarkaz.com" },
+    ],
   },
   {
     n: "05",
