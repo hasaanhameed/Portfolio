@@ -89,10 +89,7 @@ const PROJECTS = [
     blurb:
       "A web app to let developers instantly understand any GitHub repository by chatting with its codebase using RAG & LLaMA-3.",
     tags: ["FastAPI", "React", "LangChain", "LangGraph", "pgvector", "Redis", "Docker"],
-    links: [
-      { label: "GitHub", href: "https://github.com/hasaanhameed" },
-      { label: "Demo", href: "https://github.com/hasaanhameed" },
-    ],
+    links: [{ label: "GitHub", href: "https://github.com/hasaanhameed/RepoMind" }],
   },
   {
     n: "02",
@@ -100,10 +97,7 @@ const PROJECTS = [
     blurb:
       "Healthcare app to detect skin diseases from images using a custom-trained PyTorch CNN, with RAG-powered dermatology chat and PDF report generation.",
     tags: ["Flutter", "FastAPI", "PyTorch", "LangChain", "Groq", "Supabase", "Redis", "Docker"],
-    links: [
-      { label: "GitHub", href: "https://github.com/hasaanhameed" },
-      { label: "Demo", href: "https://github.com/hasaanhameed" },
-    ],
+    links: [{ label: "GitHub", href: "https://github.com/hasaanhameed/DermaLens" }],
   },
   {
     n: "03",
@@ -111,11 +105,7 @@ const PROJECTS = [
     blurb:
       "Automated academic platform for NUST students to sync deadlines from the university LMS and receive Gmail notifications before due dates.",
     tags: ["React", "FastAPI", "Celery", "PostgreSQL", "Redis", "Docker"],
-    links: [
-      { label: "GitHub", href: "https://github.com/hasaanhameed" },
-      { label: "Demo", href: "https://github.com/hasaanhameed" },
-      { label: "Live", href: "https://github.com/hasaanhameed" },
-    ],
+    links: [{ label: "GitHub", href: "https://github.com/hasaanhameed/NustPulse" }],
   },
   {
     n: "04",
@@ -123,11 +113,7 @@ const PROJECTS = [
     blurb:
       "All-in-one campus platform for NUST students covering marketplace, carpooling, lost & found, events, societies, cafes, trips and donations.",
     tags: ["React", "TypeScript", "FastAPI", "PostgreSQL", "TailwindCSS", "Docker"],
-    links: [
-      { label: "GitHub", href: "https://github.com/hasaanhameed" },
-      { label: "Demo", href: "https://github.com/hasaanhameed" },
-      { label: "Live", href: "https://github.com/hasaanhameed" },
-    ],
+    links: [{ label: "GitHub", href: "https://github.com/hasaanhameed/NustMarkaz" }],
   },
   {
     n: "05",
@@ -135,22 +121,20 @@ const PROJECTS = [
     blurb:
       "AI-powered recruitment platform offering job seekers resume analysis & roadmaps, and recruiters automated applicant screening.",
     tags: ["React", "FastAPI", "Groq", "LangChain", "Supabase", "Docker"],
-    links: [
-      { label: "GitHub", href: "https://github.com/hasaanhameed" },
-      { label: "Demo", href: "https://github.com/hasaanhameed" },
-    ],
+    links: [{ label: "GitHub", href: "https://github.com/hasaanhameed/HireReady" }],
   },
   {
     n: "06",
     title: "Botanique",
     blurb:
-      "Full-stack mobile app that uses AI-powered image recognition (PlantNet API) to identify plants and generate detailed care instructions via Groq LLM. Features JWT auth, identification history, Redis caching with 7-day TTL, and per-user rate limiting.",
+      "Mobile app that identifies plants via AI image recognition (PlantNet API) and generates care instructions using Groq LLM. Includes JWT auth, history tracking, Redis caching, and per-user rate limiting.",
     tags: ["Flutter", "FastAPI", "Groq", "PlantNet API", "Supabase", "Redis", "Docker"],
-    links: [{ label: "GitHub", href: "https://github.com/hasaanhameed" }],
+    links: [{ label: "GitHub", href: "https://github.com/hasaanhameed/Botanique" }],
   },
 ];
 
 export default function Portfolio() {
+  const [contactPopover, setContactPopover] = useState<string | null>(null);
   const [active, setActive] = useState("about");
 
   useEffect(() => {
@@ -254,12 +238,38 @@ export default function Portfolio() {
                 <IconLink href="https://linkedin.com/in/hasaan-hameed" label="LinkedIn">
                   <Linkedin className="h-3.5 w-3.5" />
                 </IconLink>
-                <IconLink href="mailto:hasaanhameed52@gmail.com" label="Email">
-                  <Mail className="h-3.5 w-3.5" />
-                </IconLink>
-                <IconLink href="tel:+923275886850" label="Phone">
-                  <Phone className="h-3.5 w-3.5" />
-                </IconLink>
+                <div className="relative">
+                  <button
+                    onClick={() =>
+                      setContactPopover(contactPopover === "email" ? null : "email")
+                    }
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-full border hairline hover:bg-navy hover:text-paper hover:border-navy transition-colors"
+                    aria-label="Email"
+                  >
+                    <Mail className="h-3.5 w-3.5" />
+                  </button>
+                  {contactPopover === "email" && (
+                    <div className="absolute left-1/2 -translate-x-1/2 bottom-10 z-20 bg-background border hairline shadow-sm px-3 py-1.5 font-mono text-xs whitespace-nowrap">
+                      hasaanhameed52@gmail.com
+                    </div>
+                  )}
+                </div>
+                <div className="relative">
+                  <button
+                    onClick={() =>
+                      setContactPopover(contactPopover === "phone" ? null : "phone")
+                    }
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-full border hairline hover:bg-navy hover:text-paper hover:border-navy transition-colors"
+                    aria-label="Phone"
+                  >
+                    <Phone className="h-3.5 w-3.5" />
+                  </button>
+                  {contactPopover === "phone" && (
+                    <div className="absolute left-1/2 -translate-x-1/2 bottom-10 z-20 bg-background border hairline shadow-sm px-3 py-1.5 font-mono text-xs whitespace-nowrap">
+                      +92 327 588 6850
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -329,15 +339,10 @@ export default function Portfolio() {
           </>
         }
       >
-        <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-rule border hairline">
+        <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 border hairline divide-y divide-x hairline">
           {SKILLS.map((s) => (
             <div key={s.group} className="bg-background p-8 hover:bg-cream/20 transition-colors">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="font-serif text-2xl">{s.group}</h3>
-                <span className="font-mono text-[10px] text-muted-foreground">
-                  {String(s.items.length).padStart(2, "0")}
-                </span>
-              </div>
+              <h3 className="font-serif text-2xl mb-6">{s.group}</h3>
               <ul className="space-y-2">
                 {s.items.map((i) => (
                   <li key={i} className="flex items-center gap-3 font-mono text-sm">
