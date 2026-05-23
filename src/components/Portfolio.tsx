@@ -281,6 +281,10 @@ export default function Portfolio() {
     const element = document.getElementById(id);
     if (!element) return;
 
+    // Detect if mobile
+    const isMobile = window.innerWidth < 768;
+    const duration = isMobile ? 300 : 600; // Much faster for mobile
+
     // Header offset (h-16 = 64px)
     const offset = 64;
     const elementPosition = element.getBoundingClientRect().top + window.scrollY;
@@ -288,7 +292,6 @@ export default function Portfolio() {
 
     const startPosition = window.scrollY;
     const distance = offsetPosition - startPosition;
-    const duration = 600; // duration in ms - reduced for snappier feel
     let start: number | null = null;
 
     const step = (timestamp: number) => {
@@ -296,7 +299,7 @@ export default function Portfolio() {
       const progress = timestamp - start;
       const time = Math.min(progress / duration, 1);
 
-      // Linear easing for consistent speed throughout
+      // Linear easing for consistent speed
       window.scrollTo(0, startPosition + distance * time);
 
       if (progress < duration) {
@@ -340,7 +343,7 @@ export default function Portfolio() {
               loop={true}
               renderer={"canvas" as any}
               rendererSettings={{
-                preserveAspectRatio: "none",
+                preserveAspectRatio: "xMidYMid slice",
               }}
               style={{ width: "100%", height: "100%" }}
             />
