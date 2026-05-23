@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ArrowUpRight, Github, Linkedin, Mail, Phone } from "lucide-react";
 import Lottie from "lottie-react";
 import particleAnimation from "../lib/animations/Particle wave with depth.json";
@@ -135,8 +135,85 @@ const PROJECTS = [
   },
 ];
 
+function ContactButton({
+  type,
+  value,
+  icon: Icon,
+  label,
+  activePopover,
+  setActivePopover,
+}: {
+  type: "email" | "phone";
+  value: string;
+  icon: any;
+  label: string;
+  activePopover: "email" | "phone" | null;
+  setActivePopover: (type: "email" | "phone" | null) => void;
+}) {
+  const [copied, setCopied] = useState(false);
+  const isOpen = activePopover === type;
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) setCopied(false);
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setActivePopover(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, setActivePopover]);
+
+  return (
+    <div ref={containerRef} className="relative">
+      <button
+        onClick={() => setActivePopover(isOpen ? null : type)}
+        className={`inline-flex h-8 w-8 items-center justify-center rounded-full border hairline transition-all duration-200 cursor-pointer ${
+          isOpen
+            ? "bg-navy text-paper border-navy shadow-sm"
+            : "hover:bg-navy hover:text-paper hover:border-navy"
+        }`}
+        aria-label={label}
+      >
+        <Icon className="h-3.5 w-3.5" />
+      </button>
+      {isOpen && (
+        <div className="absolute bottom-11 left-1/2 -translate-x-1/2 z-30 bg-background/95 backdrop-blur-md border border-navy/20 shadow-md rounded-lg px-3 py-1.5 font-mono text-[11px] whitespace-nowrap animate-in fade-in slide-in-from-bottom-2 duration-150">
+          <div className="flex items-center gap-2">
+            <span className="text-foreground">{value}</span>
+            <div className="h-3 w-px bg-navy/20" />
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                navigator.clipboard.writeText(value);
+                setCopied(true);
+                setTimeout(() => setCopied(false), 1500);
+              }}
+              className="text-[10px] text-navy font-bold uppercase tracking-wider hover:text-navy-deep cursor-pointer transition-colors"
+            >
+              {copied ? "Copied!" : "Copy"}
+            </button>
+          </div>
+          {/* Arrow pointing down */}
+          <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-background border-r border-b border-navy/20 rotate-45" />
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Portfolio() {
-  const [contactPopover, setContactPopover] = useState<string | null>(null);
+  const [contactPopover, setContactPopover] = useState<"email" | "phone" | null>(null);
+  const [footerPopover, setFooterPopover] = useState<"email" | "phone" | null>(null);
   const [active, setActive] = useState("about");
 
   useEffect(() => {
@@ -198,8 +275,8 @@ export default function Portfolio() {
                 key={n.id}
                 onClick={() => scrollTo(n.id)}
                 className={`group relative px-3 py-1.5 md:px-4 md:py-2 font-raleway text-xs md:text-sm font-medium tracking-wider cursor-pointer transition-all duration-200 border rounded-sm ${active === n.id
-                    ? "text-navy border-navy bg-cream/40"
-                    : "text-muted-foreground border-transparent hover:text-foreground hover:border-rule hover:bg-cream/15"
+                  ? "text-navy border-navy bg-cream/40"
+                  : "text-muted-foreground border-transparent hover:text-foreground hover:border-rule hover:bg-cream/15"
                   }`}
               >
                 {n.label}
@@ -253,34 +330,22 @@ export default function Portfolio() {
                 <IconLink href="https://linkedin.com/in/hasaan-hameed" label="LinkedIn">
                   <Linkedin className="h-3.5 w-3.5" />
                 </IconLink>
-                <div className="relative">
-                  <button
-                    onClick={() => setContactPopover(contactPopover === "email" ? null : "email")}
-                    className="inline-flex h-8 w-8 items-center justify-center rounded-full border hairline hover:bg-navy hover:text-paper hover:border-navy transition-colors"
-                    aria-label="Email"
-                  >
-                    <Mail className="h-3.5 w-3.5" />
-                  </button>
-                  {contactPopover === "email" && (
-                    <div className="absolute left-1/2 -translate-x-1/2 bottom-10 z-20 bg-background border hairline shadow-sm px-3 py-1.5 font-mono text-xs whitespace-nowrap">
-                      hasaanhameed52@gmail.com
-                    </div>
-                  )}
-                </div>
-                <div className="relative">
-                  <button
-                    onClick={() => setContactPopover(contactPopover === "phone" ? null : "phone")}
-                    className="inline-flex h-8 w-8 items-center justify-center rounded-full border hairline hover:bg-navy hover:text-paper hover:border-navy transition-colors"
-                    aria-label="Phone"
-                  >
-                    <Phone className="h-3.5 w-3.5" />
-                  </button>
-                  {contactPopover === "phone" && (
-                    <div className="absolute left-1/2 -translate-x-1/2 bottom-10 z-20 bg-background border hairline shadow-sm px-3 py-1.5 font-mono text-xs whitespace-nowrap">
-                      +92 327 588 6850
-                    </div>
-                  )}
-                </div>
+                <ContactButton
+                  type="email"
+                  value="hasaanhameed52@gmail.com"
+                  icon={Mail}
+                  label="Email"
+                  activePopover={contactPopover}
+                  setActivePopover={setContactPopover}
+                />
+                <ContactButton
+                  type="phone"
+                  value="+92 3275886850"
+                  icon={Phone}
+                  label="Phone"
+                  activePopover={contactPopover}
+                  setActivePopover={setContactPopover}
+                />
               </div>
             </div>
           </div>
@@ -434,12 +499,22 @@ export default function Portfolio() {
               <IconLink href="https://linkedin.com/in/hasaan-hameed" label="LinkedIn">
                 <Linkedin className="h-3.5 w-3.5" />
               </IconLink>
-              <IconLink href="mailto:hasaanhameed52@gmail.com" label="Email">
-                <Mail className="h-3.5 w-3.5" />
-              </IconLink>
-              <IconLink href="tel:+923275886850" label="Phone">
-                <Phone className="h-3.5 w-3.5" />
-              </IconLink>
+              <ContactButton
+                type="email"
+                value="hasaanhameed52@gmail.com"
+                icon={Mail}
+                label="Email"
+                activePopover={footerPopover}
+                setActivePopover={setFooterPopover}
+              />
+              <ContactButton
+                type="phone"
+                value="+92 327 588 6850"
+                icon={Phone}
+                label="Phone"
+                activePopover={footerPopover}
+                setActivePopover={setFooterPopover}
+              />
             </div>
             <div className="h-px w-16 bg-rule" />
             <p className="font-mono text-xs text-muted-foreground tracking-widest uppercase">
