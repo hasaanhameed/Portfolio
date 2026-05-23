@@ -288,7 +288,7 @@ export default function Portfolio() {
 
     const startPosition = window.scrollY;
     const distance = offsetPosition - startPosition;
-    const duration = 800; // duration in ms
+    const duration = 600; // duration in ms - reduced for snappier feel
     let start: number | null = null;
 
     const step = (timestamp: number) => {
@@ -296,10 +296,8 @@ export default function Portfolio() {
       const progress = timestamp - start;
       const time = Math.min(progress / duration, 1);
 
-      // Easing function: easeInOutQuad
-      const ease = time < 0.5 ? 2 * time * time : -1 + (4 - 2 * time) * time;
-
-      window.scrollTo(0, startPosition + distance * ease);
+      // Linear easing for consistent speed throughout
+      window.scrollTo(0, startPosition + distance * time);
 
       if (progress < duration) {
         window.requestAnimationFrame(step);
