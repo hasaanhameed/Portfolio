@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Github, Linkedin, Mail, Phone } from "lucide-react";
+import Lottie from "lottie-react";
+import particleAnimation from "../lib/animations/Particle wave with depth.json";
 
 const NAV = [
   { id: "about", label: "About" },
@@ -209,8 +211,18 @@ export default function Portfolio() {
       </header>
 
       {/* HERO / ABOUT */}
-      <section id="about" className="relative">
-        <div className="mx-auto max-w-6xl px-6 lg:px-10 pt-20 pb-28 md:pt-32 md:pb-40">
+      <section id="about" className="relative overflow-hidden">
+        {/* Lottie background container */}
+        <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center w-full">
+          <div className="w-full h-full opacity-[0.15]">
+            <Lottie
+              animationData={particleAnimation}
+              loop={true}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </div>
+        </div>
+        <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-10 pt-20 pb-28 md:pt-32 md:pb-40">
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-navy mb-10 flex items-center gap-3">
             <span className="h-px w-10 bg-navy" />
             01 — About
@@ -240,9 +252,7 @@ export default function Portfolio() {
                 </IconLink>
                 <div className="relative">
                   <button
-                    onClick={() =>
-                      setContactPopover(contactPopover === "email" ? null : "email")
-                    }
+                    onClick={() => setContactPopover(contactPopover === "email" ? null : "email")}
                     className="inline-flex h-8 w-8 items-center justify-center rounded-full border hairline hover:bg-navy hover:text-paper hover:border-navy transition-colors"
                     aria-label="Email"
                   >
@@ -256,9 +266,7 @@ export default function Portfolio() {
                 </div>
                 <div className="relative">
                   <button
-                    onClick={() =>
-                      setContactPopover(contactPopover === "phone" ? null : "phone")
-                    }
+                    onClick={() => setContactPopover(contactPopover === "phone" ? null : "phone")}
                     className="inline-flex h-8 w-8 items-center justify-center rounded-full border hairline hover:bg-navy hover:text-paper hover:border-navy transition-colors"
                     aria-label="Phone"
                   >
