@@ -218,6 +218,7 @@ export default function Portfolio() {
             <Lottie
               animationData={particleAnimation}
               loop={true}
+              renderer="canvas"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>
