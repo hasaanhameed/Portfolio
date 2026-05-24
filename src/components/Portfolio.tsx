@@ -383,7 +383,7 @@ export default function Portfolio() {
                 className="inline-flex items-center gap-2 h-auto px-3 py-1.5 border hairline rounded-sm hover:bg-navy hover:text-paper hover:border-navy transition-colors cursor-pointer mt-2"
               >
                 <Download className="h-3.5 w-3.5" />
-                <span>Download PDF</span>
+                <span>Download Resume</span>
               </button>
               <div className="flex gap-2 pt-2">
                 <IconLink href="https://github.com/hasaanhameed" label="GitHub">
