@@ -13,7 +13,7 @@ const NAV = [
 const EXPERIENCE = [
   {
     period: "Jan 2026 — May 2026",
-    role: "Part-Time Software Engineer",
+    role: "Software Engineer",
     org: "CARE Pvt. Ltd.",
     bullets: [
       "Sole developer of the Norasol Admin Portal — an internal web control panel for managing solar inverters, batteries, customers, plants, and staff across the Norasol product line.",
