@@ -1,7 +1,8 @@
 import { useEffect, useState, useRef } from "react";
-import { ArrowUpRight, Github, Linkedin, Mail, Phone } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, Phone, Download } from "lucide-react";
 import Lottie from "lottie-react";
 import particleAnimation from "../lib/animations/Particle wave with depth.json";
+import resumePDF from "../lib/resume/Hasaan_Resume.pdf";
 
 const NAV = [
   { id: "about", label: "About" },
@@ -310,6 +311,13 @@ export default function Portfolio() {
     window.requestAnimationFrame(step);
   };
 
+  const downloadResume = () => {
+    const a = document.createElement("a");
+    a.href = resumePDF;
+    a.download = "Hasaan-Hameed-Resume.pdf";
+    a.click();
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground grain">
       {/* NAV */}
@@ -370,6 +378,13 @@ export default function Portfolio() {
             <div className="md:col-span-5 md:pl-8 md:border-l hairline space-y-4 font-mono text-xs">
               <Row k="Located" v="Rawalpindi, Pakistan" />
               <Row k="Education" v="B.S. Computer Science, NUST '27" />
+              <button
+                onClick={downloadResume}
+                className="inline-flex items-center gap-2 h-auto px-3 py-1.5 border hairline rounded-sm hover:bg-navy hover:text-paper hover:border-navy transition-colors cursor-pointer mt-2"
+              >
+                <Download className="h-3.5 w-3.5" />
+                <span>Download PDF</span>
+              </button>
               <div className="flex gap-2 pt-2">
                 <IconLink href="https://github.com/hasaanhameed" label="GitHub">
                   <Github className="h-3.5 w-3.5" />
