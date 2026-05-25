@@ -104,7 +104,7 @@ const PROJECTS = [
     n: "02",
     title: "DermaLens",
     blurb:
-      "Healthcare app to detect skin diseases from images using a custom-trained PyTorch CNN, with RAG-powered dermatology chat and PDF report generation.",
+      "Healthcare mobile app to detect skin diseases from images using a custom-trained PyTorch CNN, with RAG-powered dermatology chat and PDF report generation.",
     tags: ["Flutter", "FastAPI", "PyTorch", "LangChain", "Groq", "Supabase", "Redis", "Docker"],
     links: [
       { label: "GitHub", href: "https://github.com/hasaanhameed/DermaLens" },
