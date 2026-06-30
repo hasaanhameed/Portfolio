@@ -51,7 +51,7 @@ const EXPERIENCE = [
 ];
 
 const SKILLS = [
-  { group: "Languages", items: ["Python", "SQL"] },
+  { group: "Languages", items: ["Python", "SQL", "JavaScript", "TypeScript"] },
   {
     group: "AI & LLM",
     items: [
@@ -59,27 +59,34 @@ const SKILLS = [
       "LangGraph",
       "Groq",
       "RAG Pipelines",
+      "MCP",
       "Sentence Transformers",
+      "Hugging Face",
       "Vector Databases",
     ],
   },
   { group: "ML & Data", items: ["PyTorch", "Pandas", "NumPy"] },
   {
     group: "Backend",
-    items: ["FastAPI", "SQLAlchemy", "Alembic", "REST APIs", "MQTT", "JWT & RBAC"],
+    items: ["FastAPI", "SQLAlchemy", "Alembic", "REST APIs", "MQTT", "JWT & RBAC", "Celery"],
   },
-  { group: "Frontend & Mobile", items: ["React", "TypeScript", "Flutter", "TailwindCSS"] },
+  { group: "Frontend & Mobile", items: ["React", "Flutter", "TailwindCSS"] },
   {
     group: "DevOps & Tools",
     items: [
       "Docker",
       "GitHub Actions",
       "CI/CD",
+      "AWS",
       "PostgreSQL",
       "Supabase",
       "Redis",
       "Nginx",
+      "Caddy",
       "n8n",
+      "Vercel",
+      "Railway",
+      "Upstash",
       "Git",
     ],
   },
@@ -116,17 +123,17 @@ const PROJECTS = [
   },
   {
     n: "03",
-    title: "NustPulse",
+    title: "NustDevKit",
     blurb:
-      "Automated academic platform for NUST students to sync deadlines from the university LMS and receive Gmail notifications before due dates.",
-    tags: ["React", "FastAPI", "Celery", "PostgreSQL", "Redis", "Docker"],
+      "A developer platform that exposes the NUST LMS through a clean, authenticated REST API, with auto-generated SDKs for 7 languages and a self-hosted MCP server.",
+    tags: ["FastAPI", "FastMCP", "OAuth 2.0", "AWS", "Docker", "GitHub Actions"],
     links: [
-      { label: "GitHub", href: "https://github.com/hasaanhameed/NustPulse" },
+      { label: "GitHub", href: "https://github.com/hasaanhameed/nustdevkit" },
       {
         label: "Demo",
-        href: "https://drive.google.com/file/d/1vlcM5c9kL944v4e7f5U9bLk51MGNbOHL/view?usp=sharing",
+        href: "https://drive.google.com/file/d/1ji7k2ui8A3akRe2GYuAQiO95yUNCCo2R/view?usp=sharing",
       },
-      { label: "Live", href: "https://nustpulse.com" },
+      { label: "Live", href: "https://www.nustdevkit.com/" },
     ],
   },
   {
@@ -160,6 +167,21 @@ const PROJECTS = [
   },
   {
     n: "06",
+    title: "NustPulse",
+    blurb:
+      "Automated academic platform for NUST students to sync deadlines from the university LMS and receive Gmail notifications before due dates.",
+    tags: ["React", "FastAPI", "Celery", "PostgreSQL", "Redis", "Docker"],
+    links: [
+      { label: "GitHub", href: "https://github.com/hasaanhameed/NustPulse" },
+      {
+        label: "Demo",
+        href: "https://drive.google.com/file/d/1vlcM5c9kL944v4e7f5U9bLk51MGNbOHL/view?usp=sharing",
+      },
+      { label: "Live", href: "https://nustpulse.com" },
+    ],
+  },
+  {
+    n: "07",
     title: "Botanique",
     blurb:
       "Mobile app that identifies plants via AI image recognition (PlantNet API) and generates care instructions using Groq LLM. Includes JWT auth, history tracking, Redis caching, and per-user rate limiting.",
